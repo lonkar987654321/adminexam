@@ -1,0 +1,51 @@
+
+
+create table courses
+(  ccode  varchar(5)  primary key,
+   cname  varchar(30) 
+);
+
+create table batches
+(  bcode  number(3)  primary key,
+   ccode  varchar(5) references  courses (ccode),
+   stdate date
+);
+
+
+create table students
+(  bcode  number(3)  references batches(bcode),
+   rollno  number(3),
+   sname   varchar(20),
+   pwd     varchar(10),
+   primary key(bcode,rollno)
+);
+
+
+create table questions
+( qid   number(5) primary key,
+  ccode varchar(5)  references courses(ccode),
+  question varchar(1000),
+  ans1     varchar(1000),
+  ans2     varchar(1000),
+  ans3     varchar(1000),
+  cans     char(1)
+);
+
+create table exams
+( examid  number(5) primary key,
+  bcode   number(3),
+  rollno  number(3),
+  marks   number(2),
+  dexam   date,
+  foreign key (bcode,rollno) references students(bcode,rollno)
+);
+
+
+
+
+create table password
+(  pwd  varchar(10) );
+
+
+insert into password values('abc');
+
